@@ -1,4 +1,4 @@
-package com.nduyhai.greeting;
+package com.nduyhai.greeting.service;
 
 import com.nduyhai.grpc.Greeting;
 import com.nduyhai.grpc.GreetingServiceGrpc;

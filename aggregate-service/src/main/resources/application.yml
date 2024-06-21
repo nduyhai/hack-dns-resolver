@@ -11,3 +11,22 @@ management:
   endpoint:
     health:
       show-details: always
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        step: 1m
+  tracing:
+    sampling:
+      probability: 1.0
+logging:
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}] "
+  include-application-name: false
+
+greeting:
+  host: localhost
+  port: 6565
+  ssl: false
+  max-retries: 3
+  timeout: 2s
