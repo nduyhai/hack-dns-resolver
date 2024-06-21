@@ -16,7 +16,7 @@
 
     <groupId>com.nduyhai</groupId>
     <artifactId>hack-dns-resolver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>hack-dns-resolver</name>
     <description>Hack DNS Resolver</description>
     <properties>
@@ -29,6 +29,7 @@
         <grpc.version>1.64.0</grpc.version>
         <annotations-api.version>6.0.53</annotations-api.version>
         <brave.version>6.0.3</brave.version>
+        <grpc-spring-boot-starter.version>5.1.5</grpc-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -58,7 +59,6 @@
             <artifactId>brave-instrumentation-grpc</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -75,7 +75,7 @@
             <dependency>
                 <groupId>io.github.lognet</groupId>
                 <artifactId>grpc-spring-boot-starter</artifactId>
-                <version>5.1.5</version>
+                <version>${grpc-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.protobuf</groupId>

@@ -5,10 +5,10 @@
     <parent>
         <groupId>com.nduyhai</groupId>
         <artifactId>hack-dns-resolver</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <artifactId>aggregate-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>aggregate-service</name>
     <description>aggregate-service</description>
     <properties>
