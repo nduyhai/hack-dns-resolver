@@ -10,3 +10,8 @@
 ## Scenario
 
 TBD
+
+
+## Metrics
+
+http://localhost:3000/d/hack_dns_resolver/hack-dns-resolver?orgId=1

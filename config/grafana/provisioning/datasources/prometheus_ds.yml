@@ -1,5 +1,5 @@
 datasources:
-  - name: SagaPrometheus
+  - name: HackGrpcPrometheus
     access: proxy
     type: prometheus
     url: http://prometheus:9090
