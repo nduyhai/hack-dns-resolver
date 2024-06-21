@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  http2:
+    enabled: true
+grpc:
+  enabled: true
+  port: 6565
+  enableReflection: true
+
+spring:
+  application:
+    name: greeting-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
