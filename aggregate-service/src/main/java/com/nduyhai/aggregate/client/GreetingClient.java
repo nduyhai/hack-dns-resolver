@@ -32,7 +32,7 @@ public class GreetingClient {
                 .maxRetryAttempts(this.greetingProperties.getMaxRetries())
                 .defaultLoadBalancingPolicy("round_robin")
                 .intercept(interceptors)
-                .keepAliveTimeout(this.greetingProperties.getKeepAlive().toMillis(), TimeUnit.MILLISECONDS);
+                .keepAliveTime(this.greetingProperties.getKeepAlive().toMillis(), TimeUnit.MILLISECONDS);
 
         if (!this.greetingProperties.isSsl()) {
             builder.usePlaintext();
