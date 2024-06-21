@@ -13,4 +13,5 @@ public class GrpcClientProperties {
     private boolean ssl;
     private int maxRetries;
     private Duration timeout;
+    private Duration keepAlive;
 }

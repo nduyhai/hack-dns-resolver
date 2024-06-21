@@ -33,3 +33,4 @@ greeting:
   ssl: false
   max-retries: 3
   timeout: 2s
+  keep-alive: 10m

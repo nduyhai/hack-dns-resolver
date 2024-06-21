@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +28,8 @@ public class GreetingClient {
                 .enableRetry()
                 .maxRetryAttempts(this.greetingProperties.getMaxRetries())
                 .defaultLoadBalancingPolicy("round_robin")
-                .intercept(interceptors);
+                .intercept(interceptors)
+                .keepAliveTimeout(this.greetingProperties.getKeepAlive().toMillis(), TimeUnit.MILLISECONDS);
 
         if (!this.greetingProperties.isSsl()) {
             builder.usePlaintext();
@@ -36,7 +38,9 @@ public class GreetingClient {
     }
 
     public GreetingResponse executeGreeting(GreetingRequest request) {
-        Greeting.HelloResponse response = this.blockingStub.hello(Greeting.HelloRequest.newBuilder().setName(request.getName()).build());
+        Greeting.HelloResponse response = this.blockingStub
+                .withDeadlineAfter(this.greetingProperties.getTimeout().toMillis(), TimeUnit.MILLISECONDS)
+                .hello(Greeting.HelloRequest.newBuilder().setName(request.getName()).build());
         return new GreetingResponse(response.getGreeting());
     }
 
