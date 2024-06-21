@@ -20,7 +20,6 @@ public class GreetingService extends GreetingServiceGrpc.GreetingServiceImplBase
 
             responseObserver.onNext(response);
             responseObserver.onCompleted();
-            log.info("On completed");
         } catch (Exception ex) {
             responseObserver.onError(ex);
         }
