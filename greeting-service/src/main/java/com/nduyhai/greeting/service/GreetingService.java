@@ -15,6 +15,7 @@ public class GreetingService extends GreetingServiceGrpc.GreetingServiceImplBase
     public void hello(Greeting.HelloRequest request,
                       StreamObserver<Greeting.HelloResponse> responseObserver) {
         try {
+            log.info("handling request");
             Greeting.HelloResponse response = Greeting.HelloResponse.newBuilder()
                     .setGreeting("Hello, " + request.getName()).build();
 

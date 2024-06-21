@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
@@ -19,12 +20,14 @@ import java.util.concurrent.TimeUnit;
 public class GreetingClient {
     private final GrpcClientProperties greetingProperties;
     private final List<ClientInterceptor> interceptors;
+    private final Executor greetingThreadPool;
     private GreetingServiceGrpc.GreetingServiceBlockingStub blockingStub;
 
     @PostConstruct
     public void init() {
         ManagedChannelBuilder<?> builder = NettyChannelBuilder
                 .forAddress(this.greetingProperties.getHost(), this.greetingProperties.getPort())
+                .executor(this.greetingThreadPool)
                 .enableRetry()
                 .maxRetryAttempts(this.greetingProperties.getMaxRetries())
                 .defaultLoadBalancingPolicy("round_robin")
