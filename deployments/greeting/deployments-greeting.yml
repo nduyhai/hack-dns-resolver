@@ -20,6 +20,7 @@ spec:
           image: greeting-service:0.0.1
           ports:
             - containerPort: 8080
+            - containerPort: 6565
           imagePullPolicy: "IfNotPresent"
           readinessProbe:
             httpGet:
@@ -49,11 +50,11 @@ metadata:
   name: greeting-service
   namespace: ndhai-greeting
   labels:
-    app: greeting-service
+    svc: greeting-service
 spec:
   clusterIP: None
   selector:
-    app.kubernetes.io/name: greeting-service
+    app: greeting-service
   ports:
     - name: http
       protocol: TCP
@@ -63,27 +64,5 @@ spec:
       protocol: TCP
       port: 6565
       targetPort: 6565
-
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: greeting-service-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  ingressClassName: greeting-service-ingress
-  rules:
-    - http:
-        paths:
-          - path: /greeting
-            pathType: Prefix
-            backend:
-              service:
-                name: greeting-service
-                port:
-                  number: 8080
-
 
 

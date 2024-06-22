@@ -8,6 +8,7 @@ import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class GreetingClient {
@@ -25,6 +27,7 @@ public class GreetingClient {
 
     @PostConstruct
     public void init() {
+        log.info("Config {}", this.greetingProperties);
         ManagedChannelBuilder<?> builder = NettyChannelBuilder
                 .forAddress(this.greetingProperties.getHost(), this.greetingProperties.getPort())
                 .executor(this.greetingThreadPool)
