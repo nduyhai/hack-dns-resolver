@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-service-deployment
+  namespace: ndhai-greeting
+  labels:
+    app: greeting-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: greeting-service
+  template:
+    metadata:
+      labels:
+        app: greeting-service
+    spec:
+      containers:
+        - name: greeting-service
+          image: greeting-service:0.0.1
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: "IfNotPresent"
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          env:
+            - name: SERVER_HTTP_PORT
+              value: "8080"
+            - name: SERVER_GRPC_PORT
+              value: "6565"
+            - name: ZIPKIN_BASE_URL
+              value: "http://localhost:9411"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greeting-service
+  namespace: ndhai-greeting
+  labels:
+    app: greeting-service
+spec:
+  clusterIP: None
+  selector:
+    app.kubernetes.io/name: greeting-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: grpc
+      protocol: TCP
+      port: 6565
+      targetPort: 6565
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: greeting-service-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: greeting-service-ingress
+  rules:
+    - http:
+        paths:
+          - path: /greeting
+            pathType: Prefix
+            backend:
+              service:
+                name: greeting-service
+                port:
+                  number: 8080
+
+
+
