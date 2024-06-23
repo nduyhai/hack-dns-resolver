@@ -39,7 +39,7 @@ kubectl apply -f ./deployments/aggregate/network.yml
 ```
 
 ### Port forward
-
+```shell
 kubectl -n ndhai-aggregate port-forward service/aggregate-service 8080:8080
 
 kubectl -n ndhai-aggregate port-forward bootiful-deployment-769bfccd76-bxwhl 8080:8080
@@ -47,6 +47,8 @@ kubectl -n ndhai-aggregate port-forward bootiful-deployment-769bfccd76-bxwhl 808
 kubectl -n ndhai-aggregate port-forward deployment/aggregate-service-deployment 8080:8080
 
 kubectl -n ndhai-greeting port-forward deployment/greeting-service-deployment 6565:6565
+```
+
 
 
 ###  dashboard
@@ -63,6 +65,10 @@ https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/cre
 kubectl apply -f ./deployments/dashboard/dashboard-user.yml
 kubectl -n kubernetes-dashboard create token admin-user
 ```
+
+### Install Grafana, Prometheus
+https://github.com/nduyhai/kubernetes-prometheus
+https://github.com/nduyhai/kubernetes-grafana
 
 ### debug dns
 https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
