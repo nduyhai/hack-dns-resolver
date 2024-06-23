@@ -42,7 +42,7 @@ spec:
             - name: SERVER_HTTP_PORT
               value: "8080"
             - name: ZIPKIN_BASE_URL
-              value: "http://localhost:9411"
+              value: "http://tempo-service.monitoring:9411"
             - name: GREETING_HOST
               value: "greeting-service.ndhai-greeting"
             - name: GREETING_PORT

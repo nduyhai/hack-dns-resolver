@@ -61,7 +61,8 @@ kubectl apply -f ./deployments/dashboard/dashboard-user.yml
 kubectl -n kubernetes-dashboard create token admin-user
 ```
 
-### Install Grafana, Prometheus
+### Install Grafana, Prometheus, Tempo
+https://github.com/nduyhai/kubernetes-tempo
 https://github.com/nduyhai/kubernetes-prometheus
 https://github.com/nduyhai/kubernetes-grafana
 
@@ -74,7 +75,8 @@ kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
 kubectl get pods dnsutils
 kubectl exec -i -t dnsutils -- nslookup greeting-service.ndhai-greeting
 
-kubectl exec -i -t dnsutils -- nslookup prometheus-service.monitoring.svc
+kubectl exec -i -t dnsutils -- nslookup prometheus-service.monitoring
+kubectl exec -i -t dnsutils -- nslookup tempo-service.monitoring
 ```
 
 ### Load test
