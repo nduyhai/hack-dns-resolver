@@ -44,6 +44,9 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <docker>
+                        <host>//./pipe/dockerDesktopLinuxEngine</host>
+                    </docker>
                 </configuration>
             </plugin>
             <plugin>
