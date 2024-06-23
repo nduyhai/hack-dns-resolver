@@ -11,11 +11,20 @@
 
 TBD
 
+## Run local
 
-## Metrics
+### Run
+```shell
+docker-compose up
+```
+
+```shell
+mvn spring-boot:run
+```
+
+### Metrics
 
 http://localhost:3000/d/hack_dns_resolver/hack-dns-resolver?orgId=1
-
 
 ## Run K8s
 
@@ -52,7 +61,7 @@ kubectl apply -f ./config/dashboard/dashboard.yml
 kubectl proxy
 ```
 
-create account:
+Create account:
 
 https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
 
@@ -66,6 +75,10 @@ https://github.com/nduyhai/kubernetes-tempo
 https://github.com/nduyhai/kubernetes-prometheus
 https://github.com/nduyhai/kubernetes-grafana
 
+
+```shell
+kubectl -n monitoring port-forward deployment/grafana 3000:3000
+```
 ### Debug dns
 https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
 
