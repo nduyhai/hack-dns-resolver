@@ -39,14 +39,9 @@ kubectl apply -f ./deployments/aggregate/network.yml
 ```
 
 ### Port forward
+
 ```shell
-kubectl -n ndhai-aggregate port-forward service/aggregate-service 8080:8080
-
-kubectl -n ndhai-aggregate port-forward bootiful-deployment-769bfccd76-bxwhl 8080:8080
-
 kubectl -n ndhai-aggregate port-forward deployment/aggregate-service-deployment 8080:8080
-
-kubectl -n ndhai-greeting port-forward deployment/greeting-service-deployment 6565:6565
 ```
 
 
@@ -70,7 +65,7 @@ kubectl -n kubernetes-dashboard create token admin-user
 https://github.com/nduyhai/kubernetes-prometheus
 https://github.com/nduyhai/kubernetes-grafana
 
-### debug dns
+### Debug dns
 https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
 
 ```shell
@@ -80,4 +75,10 @@ kubectl get pods dnsutils
 kubectl exec -i -t dnsutils -- nslookup greeting-service.ndhai-greeting
 
 kubectl exec -i -t dnsutils -- nslookup prometheus-service.monitoring.svc
+```
+
+### Load test
+
+```
+wrk -t12 -c400 -d30s -s ./config/wrk/post.lua http://127.0.0.1:8080/greeting
 ```
