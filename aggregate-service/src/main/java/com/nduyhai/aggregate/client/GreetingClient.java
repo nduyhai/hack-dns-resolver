@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -44,8 +45,9 @@ public class GreetingClient {
     }
 
     public GreetingResponse executeGreeting(GreetingRequest request) {
+        long ms = ThreadLocalRandom.current().nextLong(this.greetingProperties.getTimeout().toMillis());
         Greeting.HelloResponse response = this.blockingStub
-                .withDeadlineAfter(this.greetingProperties.getTimeout().toMillis(), TimeUnit.MILLISECONDS)
+                .withDeadlineAfter(ms, TimeUnit.MILLISECONDS)
                 .hello(Greeting.HelloRequest.newBuilder().setName(request.getName()).build());
         return new GreetingResponse(response.getGreeting());
     }

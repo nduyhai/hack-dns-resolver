@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: aggregate-service
-          image: aggregate-service:0.0.1
+          image: aggregate-service:0.0.2
           ports:
             - containerPort: 8080
           imagePullPolicy: "IfNotPresent"

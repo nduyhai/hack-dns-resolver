@@ -42,5 +42,5 @@ greeting:
   port: ${GREETING_PORT:6565}
   ssl: false
   max-retries: 3
-  timeout: 2s
+  timeout: 1s
   keep-alive: 10m

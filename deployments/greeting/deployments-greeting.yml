@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: greeting-service
-          image: greeting-service:0.0.1
+          image: greeting-service:0.0.2
           ports:
             - containerPort: 8080
             - containerPort: 6565

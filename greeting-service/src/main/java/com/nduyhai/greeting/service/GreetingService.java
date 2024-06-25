@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 @Slf4j
 @GRpcService
@@ -16,6 +18,7 @@ public class GreetingService extends GreetingServiceGrpc.GreetingServiceImplBase
                       StreamObserver<Greeting.HelloResponse> responseObserver) {
         try {
             log.info("handling request");
+            TimeUnit.MILLISECONDS.sleep(200);
             Greeting.HelloResponse response = Greeting.HelloResponse.newBuilder()
                     .setGreeting("Hello, " + request.getName()).build();
 
