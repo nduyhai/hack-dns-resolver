@@ -19,17 +19,6 @@ scrape_configs:
     static_configs:
       - targets: [ 'host.docker.internal:9090' ]
 
-  - job_name: 'spring-actuator'
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [
-        'host.docker.internal:8080',
-        'host.docker.internal:8081',
-#        'host.docker.internal:9092',
-#        'host.docker.internal:9093',
-#        'host.docker.internal:8089',
-      ]
   - job_name: 'tempo'
     static_configs:
       - targets: [ 'host.docker.internal:3200' ]

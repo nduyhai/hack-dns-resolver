@@ -14,10 +14,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: health,info,metrics
       base-path: /
-      path-mapping:
-        prometheus: metrics
   endpoint:
     health:
       show-details: always
@@ -28,14 +26,14 @@ management:
       enabled: true
     readinessstate:
       enabled: true
-  prometheus:
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
     metrics:
       export:
         enabled: true
         step: 1m
-  tracing:
-    sampling:
-      probability: 1.0
-  zipkin:
+        url: ${OTLP_METRICS_URL:http://localhost:4318/v1/metrics}
     tracing:
-      endpoint: ${ZIPKIN_BASE_URL:http://localhost:9411}/api/v2/spans
+      endpoint: ${OTLP_TRACE_URL:http://localhost:4318/v1/traces}
