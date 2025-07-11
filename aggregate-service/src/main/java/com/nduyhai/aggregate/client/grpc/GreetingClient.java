@@ -1,4 +1,4 @@
-package com.nduyhai.aggregate.client;
+package com.nduyhai.aggregate.client.grpc;
 
 import com.nduyhai.aggregate.dto.GreetingRequest;
 import com.nduyhai.aggregate.dto.GreetingResponse;

@@ -1,4 +1,4 @@
-package com.nduyhai.aggregate.client;
+package com.nduyhai.aggregate.client.grpc;
 
 import io.grpc.internal.GrpcUtil;
 import io.micrometer.core.instrument.Tags;

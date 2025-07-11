@@ -1,8 +1,7 @@
-package com.nduyhai.aggregate.client;
+package com.nduyhai.aggregate.client.grpc;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.Duration;
 
