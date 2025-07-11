@@ -46,6 +46,12 @@ spec:
               value: "6565"
             - name: ZIPKIN_BASE_URL
               value: "http://tempo-service.monitoring:9411"
+            - name: SSL_KEY_STORE_PASSWORD
+              value: "password"
+            - name: SSL_KEY_ALIAS
+              value: "greeting-service"
+            - name: SSL_KEY_PASSWORD
+              value: "password"
 
 ---
 apiVersion: v1
@@ -68,5 +74,3 @@ spec:
       protocol: TCP
       port: 6565
       targetPort: 6565
-
-

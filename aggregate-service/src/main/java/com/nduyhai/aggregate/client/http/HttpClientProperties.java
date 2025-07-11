@@ -20,6 +20,9 @@ public class HttpClientProperties {
     private boolean sslEnabled = false;
     private boolean sslVerify = true;
 
+    // HTTP/2 properties
+    private boolean http2Enabled = true;
+
     // Connection pool properties
     private int maxConnTotal = 100;
     private int maxConnPerRoute = 20;
